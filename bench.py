@@ -31,13 +31,14 @@ def timedbench(tEnd):
 def limitbench(limit):
     current = 0
     count = 0
-
-    while current < limit:
+    starttime = time.time()
+    while count < limit:
         current = current + 1    
         if isPrime(current):
             count = count + 1
             print("[",count,"]", current)
-    #TODO: make timer
+    elapsedTime = time.time() - starttime
+    print("Time Elapsed:", elapsedTime, "seconds")
 
 print("select function:\n1. free run\n2. run for 5 mins\n3. run for custom amount\n4. run until 10 million\n5. run until custom amount")
 inp = input("choice: ")
@@ -52,6 +53,6 @@ if inp == "3":
 if inp == "4":
     limitbench(10000000)
 if inp == "5":
-    l = input("enter a limit: ")
+    l = int(input("enter a limit: "))
     limitbench(l)
 
