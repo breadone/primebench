@@ -1,4 +1,5 @@
 import time
+import numpy as np
 
 def isPrime(num): #works perfectly except for the number 4!!!
     if num > 1:
@@ -41,7 +42,23 @@ def limitbench(limit):
     elapsedTime = time.time() - starttime
     print("Time Elapsed:", elapsedTime, "seconds")
 
-print("select function:\n1. free run\n2. run for 5 mins\n3. run for custom amount\n4. run until 10,000\n5. run until custom amount")
+def milebench(max):
+    current = 0
+    count = 0
+
+    sTime = time.time()
+    eTime = sTime
+    while True:
+        current = current + 1    
+        if isPrime(current):
+            count = count + 1
+            aTime = round((time.time() - sTime) - eTime, 2)
+            eTime = round(time.time() - sTime, 2)
+            if count % 1000 == 0:
+                print("[",count,"]", current, "[", eTime, "s |", aTime, "s]")
+
+
+print("select function:\n1. free run\n2. run for 5 mins\n3. run for custom amount\n4. run until 10,000\n5. run until custom amount\n6. milestone bench")
 inp = input("choice: ")
 
 if inp == "1":
@@ -56,6 +73,8 @@ if inp == "4":
 if inp == "5":
     l = int(input("enter a limit: "))
     limitbench(l)
-if inp == "testing":
+if inp == "6":
+    milebench(50000)
+if inp == "testnum":
     test = int(input("what number would you like to test: "))
     print(isPrime(test))
