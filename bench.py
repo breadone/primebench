@@ -1,12 +1,13 @@
 import time
 
 def isPrime(num):
-    for i in range(2, num//2):
-        if num % i == 0:
-            return False
-        else:
-            return True
-
+    if num > 1:
+        for i in range(2, num//2):
+            if num % i == 0:
+                return False
+                break
+        return True
+    
 def bench(): 
     current = 0
     count = 0
@@ -55,4 +56,6 @@ if inp == "4":
 if inp == "5":
     l = int(input("enter a limit: "))
     limitbench(l)
-
+if inp == "testing":
+    test = int(input("what number would you like to test: "))
+    print(isPrime(test))
