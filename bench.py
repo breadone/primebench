@@ -30,35 +30,33 @@ def timedbench(tEnd):
             count = count + 1
             print("[",count,"]", current)
 
-def limitbench(limit):
+def limitbench(max):
     current = 0
     count = 0
     starttime = time.time()
-    while count < limit:
+    while count < max:
         current = current + 1    
         if isPrime(current):
             count = count + 1
             print("[",count,"]", current)
-    elapsedTime = time.time() - starttime
+    elapsedTime = round(time.time() - starttime, 4)
     print("Time Elapsed:", elapsedTime, "seconds")
 
 def milebench(max):
     current = 0
     count = 0
-
     sTime = time.time()
-    eTime = sTime
-    while True:
+
+    while count < max:
         current = current + 1    
         if isPrime(current):
             count = count + 1
-            aTime = round((time.time() - sTime) - eTime, 2)
-            eTime = round(time.time() - sTime, 2)
             if count % 1000 == 0:
-                print("[",count,"]", current, "[", eTime, "s |", aTime, "s]")
+                eTime = round(time.time() - sTime, 2)                
+                print("[",count,"]", current, "[", eTime, "s]")
 
 
-print("select function:\n1. free run\n2. run for 5 mins\n3. run for custom amount\n4. run until 10,000\n5. run until custom amount\n6. milestone bench")
+print("select function:\n1. free run\n2. run for 5 mins\n3. run for custom amount\n4. run until 10,000\n5. run until custom amount\n6. milestone bench (10k)")
 inp = input("choice: ")
 
 if inp == "1":
@@ -74,7 +72,7 @@ if inp == "5":
     l = int(input("enter a limit: "))
     limitbench(l)
 if inp == "6":
-    milebench(50000)
+    milebench(10000)
 if inp == "testnum":
     test = int(input("what number would you like to test: "))
     print(isPrime(test))
