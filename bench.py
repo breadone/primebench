@@ -1,5 +1,4 @@
 import time
-import numpy as np
 
 def isPrime(num): #works perfectly except for the number 4!!!
     if num > 1:
